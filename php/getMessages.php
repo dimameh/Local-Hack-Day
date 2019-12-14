@@ -9,8 +9,15 @@
         array_push($messages, $row);
     } while ($row = mysqli_fetch_array($DBResponse));
     $date = date('Y-m-d H:i:s', time() + 14400);
-    $DBResponse = mysqli_query($DBLink, "UPDATE `message` SET `readingtime`=\"$date\" WHERE id_chat=\"$chatId\" AND from_id!=\"$userId\"");
+    $DBResponse = mysqli_query($DBLink, "UPDATE `message` SET `readingtime`=\"$date\" WHERE id_chat=\"$chatId\"");
 
 
-    print_r($messages);
+    #print_r(count($messages));
+    $count_messages = count($messages);
+    $result = [];
+    for ($i=1; $i < $count_messages; $i++) { 
+        array_push($result, $messages[$i][1]);
+    }
+    print_r($result);
+
 ?>
