@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "./",
   "scripts": {
-    "start": "cross-env PORT=10888 react-scripts start",
-    "build": "react-scripts build"
+    "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +16,7 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "react-hot-loader": "^4.9.0",
-    "react-scripts": "^3.1.2"
+    "react-scripts": "^3.3.0"
   },
   "dependencies": {
     "@vkontakte/icons": "^1.10.0",
@@ -22,8 +25,21 @@
     "babel-eslint": "^10.0.3",
     "chalk": "^2.4.2",
     "core-js": "^3.1.4",
+    "gh-pages": "^2.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
