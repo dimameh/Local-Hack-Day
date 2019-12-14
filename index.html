@@ -40,9 +40,8 @@
             let chatId = 8;
             $.ajax({
                 method: "POST",
-                //url: "php/getMessages.php",
                 url: "php/getMessages.php",
-                data: { chatId: chatId }
+                data: { userId: userId2, chatId: chatId, msg: "Олегсей" }
             }).done(function( chatURL ) {
                 alert( "TEST: " + chatURL );
             });
