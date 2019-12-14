@@ -8,7 +8,7 @@
     do {
         array_push($messages, $row);
     } while ($row = mysqli_fetch_array($DBResponse));
-    $date = date('Y-m-d h:i:s', time());
+    $date = date('Y-m-d H:i:s', time() + 14400);
     $DBResponse = mysqli_query($DBLink, "UPDATE `message` SET `readingtime`=\"$date\" WHERE id_chat=\"$chatId\" AND from_id!=\"$userId\"");
 
 

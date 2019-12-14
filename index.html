@@ -22,7 +22,12 @@
             </div>
           </div>
     </div>
-    <button onclick="test()">TEST</button>
+    <input id="1">
+    <button onclick="send1()">SEND_1</button>
+    <button onclick="send2()">SEND_2</button>
+    <button onclick="get1()">GET1</button>
+    <button onclick="get2()">GET2</button>
+    <button onclick="get_date()">GET_DATE</button>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -33,7 +38,7 @@
         });
 
 
-        function test()
+        function get1()
         {
             let userId1 = 7226521;
             let userId2 = 2538214;
@@ -41,7 +46,61 @@
             $.ajax({
                 method: "POST",
                 url: "php/getMessages.php",
-                data: { userId: userId2, chatId: chatId, msg: "Олегсей" }
+                data: { userId: userId1, chatId: chatId, msg: "ты идиот" }
+            }).done(function( chatURL ) {
+                alert( "TEST: " + chatURL );
+            });
+        }
+
+        function get_date()
+        {
+            $.ajax({
+                method: "POST",
+                url: "php/getDate.php"  
+            }).done(function( chatURL ) {
+                alert( "DATE: " + chatURL );
+            });
+        }
+
+        function get2()
+        {
+            let userId1 = 7226521;
+            let userId2 = 2538214;
+            let chatId = 8;
+            $.ajax({
+                method: "POST",
+                url: "php/getMessages.php",
+                data: { userId: userId2, chatId: chatId, msg: "ты идиот" }
+            }).done(function( chatURL ) {
+                alert( "TEST: " + chatURL );
+            });
+        }
+
+        function send1()
+        {
+            msg = document.getElementById("1").value;
+            let userId1 = 7226521;
+            let userId2 = 2538214;
+            let chatId = 8;
+            $.ajax({
+                method: "POST",
+                url: "php/sendMessage.php",
+                data: { userId: userId1, chatId: chatId, msg: "ты идиот" }
+            }).done(function( chatURL ) {
+                alert( "TEST: " + chatURL );
+            });
+        }
+
+        function send2()
+        {
+            msg = document.getElementById("1").value;
+            let userId1 = 7226521;
+            let userId2 = 2538214;
+            let chatId = 8;
+            $.ajax({
+                method: "POST",
+                url: "php/sendMessage.php",
+                data: { userId: userId2, chatId: chatId, msg: "ты идиот" }
             }).done(function( chatURL ) {
                 alert( "TEST: " + chatURL );
             });
