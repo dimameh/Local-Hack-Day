@@ -29,10 +29,12 @@
         }
         function test()
         {
+            let userId1 = 7226521;
+            let userId2 = 2538214;
             $.ajax({
                 method: "POST",
-                url: "php/test.php"
-                //data: { userId1: userId1, userId2: userId2, messageLifeTime: messageLifeTime }
+                url: "php/test.php",
+                data: { userId1: userId1, userId2: userId2 }
             }).done(function( chatURL ) {
                 alert( "TEST: " + chatURL );
             });
