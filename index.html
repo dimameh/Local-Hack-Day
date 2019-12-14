@@ -11,6 +11,7 @@
 
     </div>
     <button onclick="createChat()">Создать чат</button>
+    <button onclick="test()">TEST</button>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
         function createChat()
@@ -24,6 +25,16 @@
                 data: { userId1: userId1, userId2: userId2, messageLifeTime: messageLifeTime }
             }).done(function( chatURL ) {
                 alert( "ChatURL: " + chatURL );
+            });
+        }
+        function test()
+        {
+            $.ajax({
+                method: "POST",
+                url: "php/test.php"
+                //data: { userId1: userId1, userId2: userId2, messageLifeTime: messageLifeTime }
+            }).done(function( chatURL ) {
+                alert( "TEST: " + chatURL );
             });
         }
     </script>
