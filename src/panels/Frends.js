@@ -13,23 +13,26 @@ import Div from '@vkontakte/vkui/dist/components/Div/Div';
 const osName = platform();
 
 const Frends = props => {
+	
+	
 	return(
-	<Panel id={props.id}>
-		<PanelHeader
-		
-			left={<HeaderButton onClick={props.go} data-to="home">
-				{osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-			</HeaderButton>}
-		>
-			Выбери друга
-		</PanelHeader>
-		<Div>
-			{props.fetchFrends.data.users.id}
-		</Div>
-		
+	
+		<Panel id={props.id}>
+			<PanelHeader
+			
+				left={<HeaderButton onClick={props.go} data-to="home">
+					{osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
+				</HeaderButton>}
+			>
+				Выбери друга
+			</PanelHeader>
+			<Div>
+				{props.fetchFrends.users.map(user => JSON.stringify(user))}
+			</Div>
+			
 
-		
-	</Panel>
+			
+		</Panel>
 	)
 }
 

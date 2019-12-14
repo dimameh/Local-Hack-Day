@@ -13,7 +13,7 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
-	const [fetchedFrends, setFrends] = useState(null);
+	
 
 
 	useEffect(() => {
@@ -25,12 +25,11 @@ const App = () => {
 			}
 		});
 		// const plat = location.search
-		console.log('hello')
+		
 		async function fetchData() {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
 			
-			const frends = await connect.sendPromise('VKWebAppGetFriends')
-			setFrends(frends)
+			
 			setUser(user);
 			setPopout(null);
 		}
@@ -39,13 +38,14 @@ const App = () => {
 
 	const go = e => {
 		setActivePanel(e.currentTarget.dataset.to);
+		// connect.
 	};
 
 	return (
-		<View activePanel={activePanel} popout={popout}>
+		<View activePanel={activePanel} popout={null}>
 			<Home id='home' fetchedUser={fetchedUser} go={go} />
 			<Persik id='persik' go={go} />
-			<Frends id='frends' go={go} fetchFrends={fetchedFrends} />
+			<Frends id='frends' go={go} />
 		</View>
 	);
 }
