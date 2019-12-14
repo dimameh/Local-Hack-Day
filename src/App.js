@@ -13,6 +13,9 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+	const [fetchedFrend, setFrend] = useState(null);
+
+
 	
 
 
@@ -28,8 +31,8 @@ const App = () => {
 		
 		async function fetchData() {
 			const user = await connect.sendPromise('VKWebAppGetUserInfo');
-			
-			
+			const frends = await connect.sendPromise('VKWebAppGetFriends');
+			setFrends(frends);
 			setUser(user);
 			setPopout(null);
 		}
@@ -45,7 +48,7 @@ const App = () => {
 		<View activePanel={activePanel} popout={null}>
 			<Home id='home' fetchedUser={fetchedUser} go={go} />
 			<Persik id='persik' go={go} />
-			<Frends id='frends' go={go} />
+			<Frends id='frends' go={go}  fetchedFrends={fetchedFrend}/>
 		</View>
 	);
 }

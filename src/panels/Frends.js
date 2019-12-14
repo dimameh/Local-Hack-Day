@@ -27,7 +27,7 @@ const Frends = props => {
 				Выбери друга
 			</PanelHeader>
 			<Div>
-				{props.fetchFrends.users.map(user => JSON.stringify(user))}
+				{props.fetchedFrends.users.map(user => JSON.stringify(user))}
 			</Div>
 			
 
