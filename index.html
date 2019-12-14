@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Секретный чат</title>
+</head>
+<body>
+    <div id="chats">
+
+    </div>
+    <button onclick="createChat()">Создать чат</button>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        function createChat()
+        {
+            let userId1 = 7226521;
+            let userId2 = 2538214;
+            let messageLifeTime = "120";
+            $.ajax({
+                method: "POST",
+                url: "php/createChat.php",
+                data: { userId1: userId1, userId2: userId2, messageLifeTime: messageLifeTime }
+            }).done(function( chatURL ) {
+                alert( "ChatURL: " + chatURL );
+            });
+        }
+    </script>
+</body>
+</html>
