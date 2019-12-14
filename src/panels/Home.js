@@ -8,9 +8,12 @@ import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
+
+import {platform} from '@vkontakte/vkui';
+
 const Home = ({ id, go, fetchedUser }) => (
 	<Panel id={id}>
-		<PanelHeader>Example</PanelHeader>
+		<PanelHeader>{platform()}</PanelHeader>
 		{fetchedUser &&
 		<Group title="User Data Fetched with VK Connect">
 			<Cell
@@ -27,6 +30,11 @@ const Home = ({ id, go, fetchedUser }) => (
 					Show me the Persik, please
 				</Button>
 			</Div>
+			<Div>
+				<Button size="xl" level="2" onClick={go} data-to="frends">
+					Show me the Frends, please
+				</Button>
+			</Div>
 		</Group>
 	</Panel>
 );
@@ -41,6 +49,7 @@ Home.propTypes = {
 		city: PropTypes.shape({
 			title: PropTypes.string,
 		}),
+	
 	}),
 };
 
