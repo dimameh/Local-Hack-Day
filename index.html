@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  
+  <title>Pentagram</title>
+</head>
+<body>
+  <input id="userId"><button onclick="setUser(document.getElementById('userId').value)" class="btn" style="width: 100%;">Set ID</button>
+  <div id="chats">
+    
+  </div>
+
+  
+<div class="fixed-action-btn fab-add">
+  <a class="btn-floating btn-large blue" href="friends.html">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+
+<div class="fixed-action-btn fab-settings modal-trigger set" style="left: 23px; width: 23px;" href="#modal1">
+  <a class="btn-floating btn-large blue">
+    <i class="large material-icons">settings</i>
+  </a>
+</div>
+      
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Внимание</h4>
+    <p>Вы действительно хотите удалить все чаты?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Нет</a>
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat red" id="delete-chats">Да</a>
+  </div>
+</div>
+
+
+
+  <!-- Compiled and minified JavaScript -->
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+
+
+    var fab_settings = $('.fab-settings').floatingActionButton();
+    $('.set').ready(function(){
+      $('.modal').modal();
+    });
+
+    $('#delete-chats').click(function() {
+      $.ajax({
+        method: "POST",
+        url: "http://51.140.250.98/php/deleteChats.php",
+        data: { userId1: userId }
+      })
+      .done(function( msg ) {
+        //alert( "Data Saved: " + msg );
+      });
+    });
+
+    $('.chat').click(function() {
+      
+    });
+
+    let userId = "13373228"
+    function setUser(uid)
+    {
+      
+      userId = uid.toString();
+      console.log("userID: "+userId);
+      localStorage.setItem("userId", userId);      
+      console.log("UID: "+localStorage.getItem("userId"));
+      getChats(userId);
+    }
+
+    function getChats(uid)
+    {
+      $.ajax({
+        method: "POST",
+        url: "http://51.140.250.98/php/getChats.php",
+        data: { userId: uid }
+      })
+      .done(function( msg ) {
+        msgs = JSON.parse(msg);
+        console.log(msgs);
+        $('#chats').text("");
+        msgs.forEach(id => {
+          if (id != null)
+          $('#chats').append("<a href=\"chat.html\"><div class=\"col s12 m7 chat\" id=\""+id+"\"><div class=\"card horizontal\"><div class=\"card-image\"><img src=\"https://lorempixel.com/72/72/nature/6\" style=\"border-radius: 100%;\"></div><div class=\"card-stacked\"><div class=\"card-content\">"+id+"</div></div></div></div></a>");
+        });
+      });
+    }
+    
+  </script>
+</body>
+</html>
